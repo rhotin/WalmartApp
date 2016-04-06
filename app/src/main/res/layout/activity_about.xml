@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.roman.walmartapp.AboutActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageViewLogoAbout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:paddingLeft="10dp"
+        android:src="@mipmap/walmart_logo" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Welcome to my walmart app!"
+        android:textSize="25sp"
+        android:layout_weight="1"
+        android:id="@+id/aboutTextView"
+        android:padding="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="This app was created for someone to be able to search for items and save them to favourits"
+        android:layout_weight="1"
+        android:id="@+id/aboutTextView2"
+        android:padding="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="You may find stores near you where you can then drive and buy the item you have searched."
+        android:layout_weight="1"
+        android:id="@+id/aboutTextView3"
+        android:padding="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="App Version: 1.0.1"
+        android:layout_weight="1.5"
+        android:id="@+id/aboutTextView4"
+        android:padding="10dp" />
+
+</LinearLayout>

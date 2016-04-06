@@ -1,0 +1,18 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=CD:D3:41:9E:D7:7C:99:4A:68:25:44:23:A7:51:8D:A8:D2:5F:CC:2A%3Bcom.roman.walmartapp
+
+    You can also add your credentials to an existing key, using this line:
+    CD:D3:41:9E:D7:7C:99:4A:68:25:44:23:A7:51:8D:A8:D2:5F:CC:2A;com.roman.walmartapp
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        AIzaSyCCguhOlhyiLQL54THobc34cUsLJaXpTg0
+    </string>
+</resources>

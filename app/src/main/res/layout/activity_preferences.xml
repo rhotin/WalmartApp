@@ -1,0 +1,133 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.roman.walmartapp.PreferencesActivity"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageViewLogoSettings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:paddingLeft="10dp"
+        android:src="@mipmap/walmart_logo" />
+
+    <TextView
+        android:id="@+id/foodPref"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Default Search"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight=".5" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2.5">
+
+        <RadioButton
+            android:id="@+id/ipodRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="iPod" />
+
+        <RadioButton
+            android:id="@+id/laptopRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Laptop" />
+
+        <RadioButton
+            android:id="@+id/candyRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Candy" />
+
+        <RadioButton
+            android:id="@+id/ChocolateRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Chocolate" />
+
+        <RadioButton
+            android:id="@+id/mp3RB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="mp3" />
+    </RadioGroup>
+
+    <ToggleButton
+        android:id="@+id/specialToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:checked="false"
+        android:text="Switch"
+        android:layout_weight=".5" />
+
+    <TextView
+        android:id="@+id/specialText"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Dont Send Me Specials"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight=".5" />
+
+    <LinearLayout
+        android:id="@+id/resetView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/myLocationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Location"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Reset" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/myEmailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="My Email" />
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="ADD" />
+    </LinearLayout>
+
+</LinearLayout>
