@@ -23,6 +23,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 
     ArrayList<ItemObject> itemsArrayList = new ArrayList<>();
     Communicator context;
+
     DownloadTask(Context c) {
         this.context = (Communicator) c;
     }
@@ -53,7 +54,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 
                 ItemObject obj = new ItemObject(bmp, item_name, price, caption, model, item_url);
                 itemsArrayList.add(obj);
-                publishProgress((int)(((i + 1.0) / totalImages) * 100.0));
+                publishProgress((int) (((i + 1.0) / totalImages) * 100.0));
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -81,6 +82,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Void> {
 
     interface Communicator {
         public void updateProgressTo(int progress);
+
         public void updateUI(ArrayList<ItemObject> photosArrayList);
     }
 }

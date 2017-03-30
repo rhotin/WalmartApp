@@ -1,11 +1,13 @@
 package com.roman.walmartapp;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -31,20 +34,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity
+public class MapsActivity extends Activity
         implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener,
-        DownloadLocation.Communicator {
+        DownloadLocation.Communicator, OnMapReadyCallback {
 
     GoogleApiClient mGoogleApiClient;
     GoogleMap mGoogleMap;
     LocationRequest mLocationRequest;
     Marker marker;
-    static LocationObject objLoc;
+    static LocationObject objLoc = new LocationObject(0,0);
 
     public static String WALMART_URL_LOCATION = "";
-    double mLat;
-    double mLong;
+    double mLat = 0;
+    double mLong = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +60,24 @@ public class MapsActivity extends AppCompatActivity
                 mGoogleApiClient = new GoogleApiClient.Builder(this).addApi(LocationServices.API).
                         addConnectionCallbacks(this).addOnConnectionFailedListener(this).build();
                 mGoogleApiClient.connect();
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 mGoogleMap.setMyLocationEnabled(true);
             }
         }
     }
 
     public String setURLLocation(double locLat, double locLong) {
-        String mURLLoc = "http://api.walmartlabs.com/v1/stores?format=json&lat="
-                + locLat + "&lon=" + locLong + "&apiKey=" + Search.mAPIKey;
+        String mURLLoc = "http://api.walmartlabs.com/v1/stores?apiKey=" + Search.mAPIKey +
+                "&format=json&lat=" + locLat + "&lon=" + locLong;
         objLoc.mLat = locLat;
         objLoc.mLong = locLong;
         DownloadLocation downloadLoc = new DownloadLocation(this);
@@ -131,9 +144,16 @@ public class MapsActivity extends AppCompatActivity
     private boolean initMap() {
         if (mGoogleMap == null) {
             MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-            mGoogleMap = mapFrag.getMap();
+            mapFrag.getMapAsync(this);
         }
         return (mGoogleMap != null);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (googleMap != null) {
+            mGoogleMap = googleMap;
+        }
     }
 
     public boolean googleServicesAvailable() {
@@ -185,6 +205,16 @@ public class MapsActivity extends AppCompatActivity
         mLocationRequest = LocationRequest.create();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(3000000); // Update location every 3000 second
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 

@@ -20,7 +20,6 @@ public class FavouriteActivity extends AppCompatActivity {
 
         db = new DBAdapter(this);
 
-
         db.open();
         Cursor c = db.getAllItems();
         if (c.moveToFirst())
