@@ -46,8 +46,8 @@ public class MapsActivity extends Activity
     static LocationObject objLoc = new LocationObject(0,0);
 
     public static String WALMART_URL_LOCATION = "";
-    double mLat = 0;
-    double mLong = 0;
+    double mLat;
+    double mLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
